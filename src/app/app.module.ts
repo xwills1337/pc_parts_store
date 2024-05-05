@@ -41,6 +41,15 @@ const appRoutes: Routes = [
   providers: [
     provideClientHydration()
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent,
+    NotFoundComponent,
+    MainComponent,
+    MonitorsComponent,
+    ProcessorsComponent,
+    VideoCardsComponent,
+    DrivesComponent,
+    DevicesComponent,
+  ]
 })
 export class AppModule { }
