@@ -19,19 +19,19 @@ const appRoutes: Routes = [
   {path: 'video_cards', component: VideoCardsComponent},
   {path: 'drives', component: DrivesComponent},
   {path: 'devices', component: DevicesComponent},
-  {path: '**', component: NotFoundComponent},
+  {path: '**', component: NotFoundComponent}
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    NotFoundComponent,
     MainComponent,
     MonitorsComponent,
     ProcessorsComponent,
     VideoCardsComponent,
     DrivesComponent,
     DevicesComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,13 +43,13 @@ const appRoutes: Routes = [
   ],
   bootstrap: [
     AppComponent,
-    NotFoundComponent,
     MainComponent,
     MonitorsComponent,
     ProcessorsComponent,
     VideoCardsComponent,
     DrivesComponent,
     DevicesComponent,
+    NotFoundComponent,
   ]
 })
 export class AppModule { }

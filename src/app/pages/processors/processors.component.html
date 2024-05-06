@@ -1,1 +1,74 @@
-<p>processors works!</p>
+<main>
+    <h1 class="text-center my-4">Процессоры</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h3 style="text-align: center;">Таблица доступных процессоров</h3>
+                <table class="table table-bordered table-striped table-dark table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">№</th>
+                            <th scope="col">Поле 1</th>
+                            <th scope="col">Поле 2</th>
+                            <th scope="col">Поле 3</th>
+                            <th scope="col">Поле 4</th>
+                            <th scope="col">Поле 5</th>
+                        </tr>
+                    </thead>
+                    <tbody> 
+                        <!--Обернуть в *ngIf-->
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>data</td>
+                            <td>data</td>
+                            <td>data</td>
+                            <td>data</td>
+                            <td>data</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="accordion mx-auto" id="accordionExample" style="width: 91%;">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button text-color" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                    aria-expanded="true" aria-controls="collapseOne">
+                    Добавление процессора
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    Здесь что-то будет
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="container p-4">
+        <div class="d-lg-flex justify-content-between align-items-end">
+            <div>
+                <a href="#navigation">
+                    <div>
+                        <img width="40" height="40" src="assets/img/logo.png" alt="Логотип">
+                    </div>
+                </a>
+            </div>
+            <div class="d-lg-flex justify-content-between">
+                <div class="copyright text-color mx-2">
+                    Павел Томашайтис
+                </div>
+                <div class="copyright text-color mx-2">
+                    Владислав Барышников
+                </div>
+                <div class="copyright text-color mx-2">
+                    Денис Елагин
+                </div>
+                <div class="copyright text-color mx-2">
+                    Ле Хань Хоанг
+                </div>
+            </div>
+        </div>
+    </footer>
+</main>
