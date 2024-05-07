@@ -11,6 +11,8 @@ import { ProcessorsComponent } from './pages/processors/processors.component';
 import { VideoCardsComponent } from './pages/video-cards/video-cards.component';
 import { DrivesComponent } from './pages/drives/drives.component';
 import { DevicesComponent } from './pages/devices/devices.component';
+import { provideHttpClient, withFetch, HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { ErrorInterceptor } from './сore/interceptor/error.interceptor';
 
 const appRoutes: Routes = [
   {path: '', component: MainComponent},
@@ -36,10 +38,17 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    HttpClientModule
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
+    provideHttpClient(withFetch()),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true,
+    }
   ],
   bootstrap: [
     AppComponent,
