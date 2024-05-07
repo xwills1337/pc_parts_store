@@ -15,15 +15,14 @@
                             <th scope="col">Поле 5</th>
                         </tr>
                     </thead>
-                    <tbody> 
-                        <!--Обернуть в *ngIf-->
+                    <tbody *ngFor="let videoCard of videoCards; let i = index"> 
                         <tr>
-                            <th scope="row">1</th>
-                            <td>data</td>
-                            <td>data</td>
-                            <td>data</td>
-                            <td>data</td>
-                            <td>data</td>
+                            <th scope="row">{{i + 1}}</th>
+                            <td>{{videoCard.att1}}</td>
+                            <td>{{videoCard.att2}}</td>
+                            <td>{{videoCard.att3}}</td>
+                            <td>{{videoCard.att4}}</td>
+                            <td>{{videoCard.att5}}</td>
                         </tr>
                     </tbody>
                 </table>
