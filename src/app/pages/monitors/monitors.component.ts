@@ -12,11 +12,13 @@ export class User {
     public att5: string,
   ){}
 }
+
 @Component({
   selector: 'app-monitors',
   templateUrl: './monitors.component.html',
   styleUrl: './monitors.component.css'
 })
+
 export class MonitorsComponent implements AfterViewInit {
   constructor (private elementRef: ElementRef, private dataService: DataService ) {}
   users: User[] = [];

@@ -13,6 +13,7 @@ import { DrivesComponent } from './pages/drives/drives.component';
 import { DevicesComponent } from './pages/devices/devices.component';
 import { provideHttpClient, withFetch, HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { ErrorInterceptor } from './сore/interceptor/error.interceptor';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const appRoutes: Routes = [
   {path: '', component: MainComponent},
@@ -39,7 +40,8 @@ const appRoutes: Routes = [
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot(appRoutes),
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [
     provideClientHydration(),
@@ -51,14 +53,7 @@ const appRoutes: Routes = [
     }
   ],
   bootstrap: [
-    AppComponent,
-    MainComponent,
-    MonitorsComponent,
-    ProcessorsComponent,
-    VideoCardsComponent,
-    DrivesComponent,
-    DevicesComponent,
-    NotFoundComponent,
+    AppComponent
   ]
 })
 export class AppModule { }
