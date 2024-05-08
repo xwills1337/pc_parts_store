@@ -1,50 +1,33 @@
 import { AfterViewInit, Component, ElementRef, OnInit } from '@angular/core';
 import { filter, map } from 'rxjs';
-import { DataService, Processor } from '../../сore/services/data.service';
-
-// Class User for adding new product
-export class User {
-  constructor(
-    public att1: string,
-    public att2: string,
-    public att3: string,
-    public att4: string,
-    public att5: string,
-  ){}
-}
+import { DataService, Product } from '../../сore/services/data.service';
 
 @Component({
   selector: 'app-processors',
   templateUrl: './processors.component.html',
   styleUrl: './processors.component.css'
 })
-export class ProcessorsComponent implements AfterViewInit {
+export class ProcessorsComponent implements AfterViewInit, OnInit {
+  processors: Product[] = [];
+
   constructor (private elementRef: ElementRef, private dataService: DataService ) {}
-  users: User[] = [];
-  att1 = '';
-  att2 = '';
-  att3 = '';
-  att4 = '';
-  att5 = '';
-  processors: Processor[] = [];
 
   ngAfterViewInit() {
     this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#F5FEFD';
   }
 
   ngOnInit(): void {
-    this.dataService.getProcessors()
+    this.dataService.getProduct('assets/processors.json')
     .pipe(
       filter(data => data != null),
       map((data => (data.map(processor => ({...processor})))))
     )
     .subscribe((processors) => {
         this.processors = processors;
-    })
-
+    });
   }
 
   onNameChange(): void {
-    console.log('Что-то изменилось в DevicesComponent ')
+    console.log('New processor has been added.');
   }
 }
