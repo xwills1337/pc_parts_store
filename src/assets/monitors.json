@@ -1,16 +1,51 @@
 [
-    {
-        "att1": "test monitor 1",
-        "att2": "test monitor 2",
-        "att3": "test monitor 3",
-        "att4": "test monitor 4",
-        "att5": "test monitor 5"
-    },
-    {
-        "att1": "test monitor 1",
-        "att2": "test monitor 2",
-        "att3": "test monitor 3",
-        "att4": "test monitor 4",
-        "att5": "test monitor 5"
-    }
+  {
+    "att1": "DEXP DF22N1",
+    "att2": "21.4",
+    "att3": "VA",
+    "att4": "75",
+    "att5": "1920x1080"
+  },
+  {
+    "att1": "AOC E1659FWU",
+    "att2": "15.6",
+    "att3": "TN",
+    "att4": "60",
+    "att5": "1366x768"
+  },
+  {
+    "att1": "Cooler Master CMI-GA241",
+    "att2": "23.8",
+    "att3": "VA",
+    "att4": "100",
+    "att5": "1920x1080"
+  },
+  {
+    "att1": "AOPEN 22SA2QEBI",
+    "att2": "21.5",
+    "att3": "IPS",
+    "att4": "100",
+    "att5": "1920x1080"
+  },
+  {
+    "att1": "ASUS VA247HE",
+    "att2": "23.8",
+    "att3": "VA",
+    "att4": "75",
+    "att5": "1920x1080"
+  },
+  {
+    "att1": "HUAWEI MateView SE SSN-24BZ",
+    "att2": "23.8",
+    "att3": "IPS",
+    "att4": "75",
+    "att5": "1920x1080"
+  },
+  {
+    "att1": "DEXP DF24N1R",
+    "att2": "23.8",
+    "att3": "IPS",
+    "att4": "75",
+    "att5": "1920x1080"
+  }
 ]
