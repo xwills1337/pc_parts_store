@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+@import "../node_modules/bootstrap-icons/font/bootstrap-icons.css";
+
+.input-container {
+    display: flex;
+}
+
+.validation-error {
+    margin-left: 10px;
+    color: red;
+}

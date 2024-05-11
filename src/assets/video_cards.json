@@ -1,51 +1,51 @@
 [
   {
-    "att1": "MSI GeForce 210",
-    "att2": "GeForce 210",
-    "att3": "460",
-    "att4": "1",
-    "att5": "DVI-I, HDMI, VGA (D-Sub)"
+    "name": "MSI GeForce 210",
+    "graphic_processor": "GeForce 210",
+    "frequency": "460",
+    "vram": "1",
+    "outputs": "DVI-I, HDMI, VGA (D-Sub)"
   },
   {
-    "att1": "GIGABYTE GeForce GT 730",
-    "att2": "GeForce GT 730",
-    "att3": "902",
-    "att4": "2",
-    "att5": "DVI-I, HDMI, VGA (D-Sub)"
+    "name": "GIGABYTE GeForce GT 730",
+    "graphic_processor": "GeForce GT 730",
+    "frequency": "902",
+    "vram": "2",
+    "outputs": "DVI-I, HDMI, VGA (D-Sub)"
   },
   {
-    "att1": "PowerColor AMD Radeon 550",
-    "att2": "Radeon RX 550",
-    "att3": "1100",
-    "att4": "2",
-    "att5": "DVI-D, HDMI"
+    "name": "PowerColor AMD Radeon 550",
+    "graphic_processor": "Radeon RX 550",
+    "frequency": "1100",
+    "vram": "2",
+    "outputs": "DVI-D, HDMI"
   },
   {
-    "att1": "ZOTAC GeForce GT 1030 LP",
-    "att2": "GeForce GT 1030",
-    "att3": "1227",
-    "att4": "2",
-    "att5": "DVI-D, HDMI"
+    "name": "ZOTAC GeForce GT 1030 LP",
+    "graphic_processor": "GeForce GT 1030",
+    "frequency": "1227",
+    "vram": "2",
+    "outputs": "DVI-D, HDMI"
   },
   {
-    "att1": "GIGABYTE GeForce GTX 1650 D6 OC (rev. 2.0)",
-    "att2": "GeForce GTX 1650",
-    "att3": "1410",
-    "att4": "4",
-    "att5": "DVI-D, DisplayPort, HDMI"
+    "name": "GIGABYTE GeForce GTX 1650 D6 OC (rev. 2.0)",
+    "graphic_processor": "GeForce GTX 1650",
+    "frequency": "1410",
+    "vram": "4",
+    "outputs": "DVI-D, DisplayPort, HDMI"
   },
   {
-    "att1": "Sapphire AMD Radeon RX 6600 PULSE",
-    "att2": "Radeon RX 6600",
-    "att3": "1626",
-    "att4": "8",
-    "att5": "3 x DisplayPort, HDMI"
+    "name": "Sapphire AMD Radeon RX 6600 PULSE",
+    "graphic_processor": "Radeon RX 6600",
+    "frequency": "1626",
+    "vram": "8",
+    "outputs": "3 x DisplayPort, HDMI"
   },
   {
-    "att1": "Palit GeForce RTX 3050 Dual",
-    "att2": "GeForce RTX 3050",
-    "att3": "1552",
-    "att4": "8",
-    "att5": "DVI-D, DisplayPort, HDMI"
+    "name": "Palit GeForce RTX 3050 Dual",
+    "graphic_processor": "GeForce RTX 3050",
+    "frequency": "1552",
+    "vram": "8",
+    "outputs": "DVI-D, DisplayPort, HDMI"
   }
 ]

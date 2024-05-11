@@ -1,46 +1,53 @@
 <main>
     <h1 class="text-center my-4">Процессоры</h1>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-12">
-                <h3 style="text-align: center;">Таблица доступных процессоров</h3>
-                <table class="table table-bordered table-striped table-dark table-hover">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">№</th>
-                            <th scope="col">Модель</th>
-                            <th scope="col">Сокет</th>
-                            <th scope="col">Количество ядер</th>
-                            <th scope="col">Базовая частота, ГГц</th>
-                            <th scope="col">Максимальная частота в турбо режиме, ГГц</th>
-                        </tr>
-                    </thead>
-                    <tbody *ngFor="let processor of processors; let i = index">
-                        <tr>
-                            <th scope="row">{{i + 1}}</th>
-                            <td>{{processor.att1}}</td>
-                            <td>{{processor.att2}}</td>
-                            <td>{{processor.att3}}</td>
-                            <td>{{processor.att4}}</td>
-                            <td>{{processor.att5}}</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="col-12 col-lg-9">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="mb-3" style="text-align: center;">Таблица доступных процессоров</h3>
+                        <table class="table table-bordered table-hover" id="processors-table">
+                            <thead class="align-top">
+                                <tr>
+                                    <th scope="col">№</th>
+                                    <th scope="col">Модель</th>
+                                    <th scope="col">Сокет</th>
+                                    <th scope="col">Количество ядер</th>
+                                    <th scope="col">Базовая частота, ГГц</th>
+                                    <th scope="col">Максимальная частота в турбо режиме, ГГц</th>
+                                    <th scope="col">Действия</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let processor of processors; let i = index">
+                                <tr>
+                                    <th scope="row">{{i + 1}}</th>
+                                    <td>{{processor.name}}</td>
+                                    <td>{{processor.socket}}</td>
+                                    <td>{{processor.cores}}</td>
+                                    <td>{{processor.frequency}}</td>
+                                    <td>{{processor.turbo_frequency}}</td>
+                                    <td class="text-center">
+                                        <span class="text-warning ms-1" style="cursor: pointer" data-id={{i}} data-bs-toggle="modal" data-bs-target="#modal-processor" (click)="updateProcessor(i)">
+                                            <i class="bi-pencil-square" style="font-size: 20px"></i>
+                                        </span>
+                                        <span class="text-danger ms-1" style="cursor: pointer" (click)="deleteProcessor(i)">
+                                            <i class="bi-x-square" style="font-size: 20px"></i>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="accordion mx-auto" id="accordionExample" style="width: 91%;">
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button text-color" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
-                    aria-expanded="true" aria-controls="collapseOne">
-                    Добавление процессора
-                </button>
-            </h2>
-            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
-                data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                    Здесь что-то будет
+            <div class="col-12 col-lg-3">
+                <div class="card" id="">
+                    <div class="card-body">
+                        <div>
+                            <h1 class="card-title fs-5 text-center">Добавление процессора</h1>
+                            <div class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#modal-processor" (click)="clearForm()">Добавить</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -70,4 +77,68 @@
             </div>
         </div>
     </footer>
+       
+    
+    <div class="modal fade" id="modal-processor" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Характеристики процессора</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                    <div class="modal-body">
+                        <div class="input-container mb-3">
+                            <div class="form-floating w-50">
+                                <input class="form-control" id="name" name="name" formControlName="name"/>
+                                <label for="name">Модель</label>
+                            </div>
+                            <div class="validation-error w-50" *ngIf="form.controls['name'].invalid || form.controls['name'].untouched">
+                                Введите модель
+                            </div>
+                        </div>
+                        <div class="input-container mb-3">
+                            <div class="form-floating w-50">
+                                <input class="form-control" id="socket" name="socket" formControlName="socket"/>
+                                <label for="socket">Сокет</label>
+                            </div>
+                            <div class="validation-error w-50" *ngIf="form.controls['socket'].invalid || form.controls['socket'].untouched">
+                                Введите сокет
+                            </div>
+                        </div>
+                        <div class="input-container mb-3">
+                            <div class="form-floating w-50">
+                                <input type="number" class="form-control" id="cores" name="cores" formControlName="cores"/>
+                                <label for="cores">Количество ядер</label>
+                            </div>
+                            <div class="validation-error w-50" *ngIf="form.controls['cores'].invalid || form.controls['cores'].untouched">
+                                Введите количество ядер
+                            </div>
+                        </div>
+                        <div class="input-container mb-3">
+                            <div class="form-floating w-50">
+                                <input type="number" class="form-control" id="frequency" name="frequency" formControlName="frequency"/>
+                                <label for="frequency">Базовая частота</label>
+                            </div>
+                            <div class="validation-error w-50" *ngIf="form.controls['frequency'].invalid || form.controls['frequency'].untouched">
+                                Введите базовую частоту, ГГц
+                            </div>
+                        </div>
+                        <div class="input-container mb-3">
+                            <div class="form-floating w-50">
+                                <input type="number" class="form-control" id="turbo_frequency" name="turbo_frequency" formControlName="turbo_frequency"/>
+                                <label for="turbo_frequency">Частота в турбо режиме</label>
+                            </div>
+                            <div class="validation-error w-50" *ngIf="form.controls['turbo_frequency'].invalid || form.controls['turbo_frequency'].untouched">
+                                Введите частоту в турбо режиме, ГГц
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" [disabled]="form.invalid" data-bs-dismiss="modal">Добавить</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </main>

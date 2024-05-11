@@ -1,51 +1,51 @@
 [
   {
-    "att1": "Toshiba P300",
-    "att2": "1",
-    "att3": "64",
-    "att4": "7200",
-    "att5": "196"
+    "name": "Toshiba P300",
+    "capacity": "1",
+    "cache": "64",
+    "rotation_speed": "7200",
+    "data_transfer_rate": "196"
   },
   {
-    "att1": "WD Purple",
-    "att2": "1",
-    "att3": "64",
-    "att4": "5400",
-    "att5": "110"
+    "name": "WD Purple",
+    "capacity": "1",
+    "cache": "64",
+    "rotation_speed": "5400",
+    "data_transfer_rate": "110"
   },
   {
-    "att1": "WD Blue",
-    "att2": "2",
-    "att3": "256",
-    "att4": "7200",
-    "att5": "215"
+    "name": "WD Blue",
+    "capacity": "2",
+    "cache": "256",
+    "rotation_speed": "7200",
+    "data_transfer_rate": "215"
   },
   {
-    "att1": "Seagate SkyHawk",
-    "att2": "3",
-    "att3": "256",
-    "att4": "5400",
-    "att5": "185"
+    "name": "Seagate SkyHawk",
+    "capacity": "3",
+    "cache": "256",
+    "rotation_speed": "5400",
+    "data_transfer_rate": "185"
   },
   {
-    "att1": "Toshiba DT02-V",
-    "att2": "4",
-    "att3": "128",
-    "att4": "5400",
-    "att5": "176.4"
+    "name": "Toshiba DT02-V",
+    "capacity": "4",
+    "cache": "128",
+    "rotation_speed": "5400",
+    "data_transfer_rate": "176.4"
   },
   {
-    "att1": "WD Ultrastar DC HA210",
-    "att2": "1",
-    "att3": "128",
-    "att4": "7200",
-    "att5": "184"
+    "name": "WD Ultrastar DC HA210",
+    "capacity": "1",
+    "cache": "128",
+    "rotation_speed": "7200",
+    "data_transfer_rate": "184"
   },
   {
-    "att1": "Toshiba MG08-D",
-    "att2": "4",
-    "att3": "256",
-    "att4": "7200",
-    "att5": "222"
+    "name": "Toshiba MG08-D",
+    "capacity": "4",
+    "cache": "256",
+    "rotation_speed": "7200",
+    "data_transfer_rate": "222"
   }
 ]

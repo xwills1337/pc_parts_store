@@ -14,6 +14,7 @@ import { DevicesComponent } from './pages/devices/devices.component';
 import { provideHttpClient, withFetch, HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { ErrorInterceptor } from './сore/interceptor/error.interceptor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const appRoutes: Routes = [
   {path: '', component: MainComponent},
@@ -41,6 +42,8 @@ const appRoutes: Routes = [
     AppRoutingModule,
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     NgbModule
   ],
   providers: [

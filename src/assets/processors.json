@@ -1,44 +1,44 @@
 [
   {
-    "att1": "AMD FX-4300",
-    "att2": "AM3+",
-    "att3": "4",
-    "att4": "3.8",
-    "att5": "4"
+    "name": "AMD FX-4300",
+    "socket": "AM3+",
+    "cores": "4",
+    "frequency": "3.8",
+    "turbo_frequency": "4"
   },
   {
-    "att1": "AMD Ryzen 3 4100",
-    "att2": "AM4",
-    "att3": "4",
-    "att4": "3.8",
-    "att5": "4"
+    "name": "AMD Ryzen 3 4100",
+    "socket": "AM4",
+    "cores": "4",
+    "frequency": "3.8",
+    "turbo_frequency": "4"
   },
   {
-    "att1": "Intel Pentium Gold G6405",
-    "att2": "LGA 1200",
-    "att3": "2",
-    "att4": "4.1",
-    "att5": "4.1"
+    "name": "Intel Pentium Gold G6405",
+    "socket": "LGA 1200",
+    "cores": "2",
+    "frequency": "4.1",
+    "turbo_frequency": "4.1"
   },
   {
-    "att1": "Intel Core i5-10400F",
-    "att2": "LGA 1200",
-    "att3": "6",
-    "att4": "2.9",
-    "att5": "4.3"
+    "name": "Intel Core i5-10400F",
+    "socket": "LGA 1200",
+    "cores": "6",
+    "frequency": "2.9",
+    "turbo_frequency": "4.3"
   },
   {
-    "att1": "Intel Core i5-8400",
-    "att2": "LGA 1151-v2",
-    "att3": "6",
-    "att4": "2.8",
-    "att5": "4"
+    "name": "Intel Core i5-8400",
+    "socket": "LGA 1151-v2",
+    "cores": "6",
+    "frequency": "2.8",
+    "turbo_frequency": "4"
   },
   {
-    "att1": "Intel Core i5-12400F",
-    "att2": "LGA 1700",
-    "att3": "6",
-    "att4": "2.5",
-    "att5": "4.4"
+    "name": "Intel Core i5-12400F",
+    "socket": "LGA 1700",
+    "cores": "6",
+    "frequency": "2.5",
+    "turbo_frequency": "4.4"
   }
 ]
