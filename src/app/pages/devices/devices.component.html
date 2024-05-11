@@ -1,46 +1,53 @@
 <main>
     <h1 class="text-center my-4">Устройства</h1>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-12">
-                <h3 style="text-align: center;">Таблица доступных устройств</h3>
-                <table class="table table-bordered table-striped table-dark table-hover">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">№</th>
-                            <th scope="col">Название</th>
-                            <th scope="col">Тип устройства</th>
-                            <th scope="col">Проводное/беспроводное</th>
-                            <th scope="col">Вес, г</th>
-                            <th scope="col">Габариты (ширина-высота-длина), мм</th>
-                        </tr>
-                    </thead>
-                    <tbody *ngFor="let device of devices; let i = index">
-                        <tr>
-                            <th scope="row">{{i + 1}}</th>
-                            <td>{{device.att1}}</td>
-                            <td>{{device.att2}}</td>
-                            <td>{{device.att3}}</td>
-                            <td>{{device.att4}}</td>
-                            <td>{{device.att5}}</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="col-12 col-lg-9">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="mb-3" style="text-align: center;">Таблица доступных устройств</h3>
+                        <table class="table table-bordered table-hover" id="devices-table">
+                            <thead class="align-top">
+                                <tr>
+                                    <th scope="col">№</th>
+                                    <th scope="col">Название</th>
+                                    <th scope="col">Тип устройства</th>
+                                    <th scope="col">Проводное/беспроводное</th>
+                                    <th scope="col">Вес, г</th>
+                                    <th scope="col">Габариты (ширина-высота-длина), мм</th>
+                                    <th scope="col">Действия</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let device of devices; let i = index">
+                                <tr>
+                                    <th scope="row">{{i + 1}}</th>
+                                    <td>{{device.name}}</td>
+                                    <td>{{device.device_type}}</td>
+                                    <td>{{device.connection_type}}</td>
+                                    <td>{{device.weight}}</td>
+                                    <td>{{device.size}}</td>
+                                    <td class="text-center">
+                                        <span class="text-warning ms-1" style="cursor: pointer" data-id={{i}} data-bs-toggle="modal" data-bs-target="#modal-device" (click)="updateDevice(i)">
+                                            <i class="bi-pencil-square" style="font-size: 20px"></i>
+                                        </span>
+                                        <span class="text-danger ms-1" style="cursor: pointer" (click)="deleteDevice(i)">
+                                            <i class="bi-x-square" style="font-size: 20px"></i>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="accordion mx-auto" id="accordionExample" style="width: 91%;">
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button text-color" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
-                    aria-expanded="true" aria-controls="collapseOne">
-                    Добавление устройства
-                </button>
-            </h2>
-            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
-                data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                    Здесь что-то будет
+            <div class="col-12 col-lg-3">
+                <div class="card" id="">
+                    <div class="card-body">
+                        <div>
+                            <h1 class="card-title fs-5 text-center">Добавление устройства</h1>
+                            <div class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#modal-device" (click)="clearForm()">Добавить</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -70,4 +77,68 @@
             </div>
         </div>
     </footer>
+
+    
+    <div class="modal fade" id="modal-device" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Характеристики устройства</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                    <div class="modal-body">
+                        <div class="input-container mb-3">
+                            <div class="form-floating w-50">
+                                <input class="form-control" id="name" name="name" formControlName="name"/>
+                                <label for="name">Название</label>
+                            </div>
+                            <div class="validation-error w-50" *ngIf="form.controls['name'].invalid || form.controls['name'].untouched">
+                                Введите название
+                            </div>
+                        </div>
+                        <div class="input-container mb-3">
+                            <div class="form-floating w-50">
+                                <input class="form-control" id="device_type" name="device_type" formControlName="device_type"/>
+                                <label for="device_type">Тип устройства</label>
+                            </div>
+                            <div class="validation-error w-50" *ngIf="form.controls['device_type'].invalid || form.controls['device_type'].untouched">
+                                Введите тип устройства
+                            </div>
+                        </div>
+                        <div class="input-container mb-3">
+                            <div class="form-floating w-50">
+                                <input class="form-control" id="connection_type" name="connection_type" formControlName="connection_type"/>
+                                <label for="connection_type">Тип соединения</label>
+                            </div>
+                            <div class="validation-error w-50" *ngIf="form.controls['connection_type'].invalid || form.controls['connection_type'].untouched">
+                                Введите тип соединения
+                            </div>
+                        </div>
+                        <div class="input-container mb-3">
+                            <div class="form-floating w-50">
+                                <input type="number" class="form-control" id="weight" name="weight" formControlName="weight"/>
+                                <label for="weight">Вес устройства</label>
+                            </div>
+                            <div class="validation-error w-50" *ngIf="form.controls['weight'].invalid || form.controls['weight'].untouched">
+                                Введите вес устройства
+                            </div>
+                        </div>
+                        <div class="input-container mb-3">
+                            <div class="form-floating w-50">
+                                <input class="form-control" id="size" name="size" formControlName="size"/>
+                                <label for="size">Габариты</label>
+                            </div>
+                            <div class="validation-error w-50" *ngIf="form.controls['size'].invalid || form.controls['size'].untouched">
+                                Введите габариты устройства
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" [disabled]="form.invalid" data-bs-dismiss="modal">Добавить</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </main>

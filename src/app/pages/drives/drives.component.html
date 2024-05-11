@@ -1,46 +1,53 @@
 <main>
     <h1 class="text-center my-4">Накопители</h1>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-12">
-                <h3 style="text-align: center;">Таблица доступных накопителей</h3>
-                <table class="table table-bordered table-striped table-dark table-hover">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">№</th>
-                            <th scope="col">Модель</th>
-                            <th scope="col">Объем HDD, ТБ</th>
-                            <th scope="col">Объем кэш-памяти, МБ</th>
-                            <th scope="col">Скорость вращения шпинделя, об/мин</th>
-                            <th scope="col">Максимальная скорость передачи данных, Мбайт/сек</th>
-                        </tr>
-                    </thead>
-                    <tbody *ngFor="let drive of drives; let i = index">
-                        <tr>
-                            <th scope="row">{{i + 1}}</th>
-                            <td>{{drive.att1}}</td>
-                            <td>{{drive.att2}}</td>
-                            <td>{{drive.att3}}</td>
-                            <td>{{drive.att4}}</td>
-                            <td>{{drive.att5}}</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="col-12 col-lg-9">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="mb-3" style="text-align: center;">Таблица доступных накопителей</h3>
+                        <table class="table table-bordered table-hover" id="drives-table">
+                            <thead class="align-top">
+                                <tr>
+                                    <th scope="col">№</th>
+                                    <th scope="col">Модель</th>
+                                    <th scope="col">Объем HDD, ТБ</th>
+                                    <th scope="col">Объем кэш-памяти, МБ</th>
+                                    <th scope="col">Скорость вращения шпинделя, об/мин</th>
+                                    <th scope="col">Максимальная скорость передачи данных, Мбайт/сек</th>
+                                    <th scope="col">Действия</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let drive of drives; let i = index">
+                                <tr>
+                                    <th scope="row">{{i + 1}}</th>
+                                    <td>{{drive.name}}</td>
+                                    <td>{{drive.capacity}}</td>
+                                    <td>{{drive.cache}}</td>
+                                    <td>{{drive.rotation_speed}}</td>
+                                    <td>{{drive.data_transfer_rate}}</td>
+                                    <td class="text-center">
+                                        <span class="text-warning ms-1" style="cursor: pointer" data-id={{i}} data-bs-toggle="modal" data-bs-target="#modal-drive" (click)="updateDrive(i)">
+                                            <i class="bi-pencil-square" style="font-size: 20px"></i>
+                                        </span>
+                                        <span class="text-danger ms-1" style="cursor: pointer" (click)="deleteDrive(i)">
+                                            <i class="bi-x-square" style="font-size: 20px"></i>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="accordion mx-auto" id="accordionExample" style="width: 91%;">
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button text-color" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
-                    aria-expanded="true" aria-controls="collapseOne">
-                    Добавление накопителя
-                </button>
-            </h2>
-            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
-                data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                    Здесь что-то будет
+            <div class="col-12 col-lg-3">
+                <div class="card" id="">
+                    <div class="card-body">
+                        <div>
+                            <h1 class="card-title fs-5 text-center">Добавление накопителя</h1>
+                            <div class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#modal-drive" (click)="clearForm()">Добавить</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -70,4 +77,68 @@
             </div>
         </div>
     </footer>
+    
+    
+    <div class="modal fade" id="modal-drive" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Характеристики накопителя</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                    <div class="modal-body">
+                        <div class="input-container mb-3">
+                            <div class="form-floating w-50">
+                                <input class="form-control" id="name" name="name" formControlName="name"/>
+                                <label for="name">Модель</label>
+                            </div>
+                            <div class="validation-error w-50" *ngIf="form.controls['name'].invalid || form.controls['name'].untouched">
+                                Введите модель
+                            </div>
+                        </div>
+                        <div class="input-container mb-3">
+                            <div class="form-floating w-50">
+                                <input type="number" class="form-control" id="capacity" name="capacity" formControlName="capacity"/>
+                                <label for="capacity">Объем накопителя, ТБ</label>
+                            </div>
+                            <div class="validation-error w-50" *ngIf="form.controls['capacity'].invalid || form.controls['capacity'].untouched">
+                                Введите объем накопителя, ТБ
+                            </div>
+                        </div>
+                        <div class="input-container mb-3">
+                            <div class="form-floating w-50">
+                                <input type="number" class="form-control" id="cache" name="cache" formControlName="cache"/>
+                                <label for="cache">Объем кэш-памяти, МБ</label>
+                            </div>
+                            <div class="validation-error w-50" *ngIf="form.controls['cache'].invalid || form.controls['cache'].untouched">
+                                Введите объем кэш-памяти, МБ
+                            </div>
+                        </div>
+                        <div class="input-container mb-3">
+                            <div class="form-floating w-50">
+                                <input type="number" class="form-control" id="rotation_speed" name="rotation_speed" formControlName="rotation_speed"/>
+                                <label for="rotation_speed">Скорость вращения шпинделя</label>
+                            </div>
+                            <div class="validation-error w-50" *ngIf="form.controls['rotation_speed'].invalid || form.controls['rotation_speed'].untouched">
+                                Введите скорость вращения шпинделя, об/мин
+                            </div>
+                        </div>
+                        <div class="input-container mb-3">
+                            <div class="form-floating w-50">
+                                <input type="number" class="form-control" id="data_transfer_rate" name="data_transfer_rate" formControlName="data_transfer_rate"/>
+                                <label for="data_transfer_rate">Скорость передачи данных</label>
+                            </div>
+                            <div class="validation-error w-50" *ngIf="form.controls['data_transfer_rate'].invalid || form.controls['data_transfer_rate'].untouched">
+                                Введите скорость передачи данных, Мбайт/сек
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" [disabled]="form.invalid" data-bs-dismiss="modal">Добавить</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </main>

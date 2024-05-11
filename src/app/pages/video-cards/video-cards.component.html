@@ -1,46 +1,53 @@
 <main>
     <h1 class="text-center my-4">Видеокарты</h1>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-12">
-                <h3 style="text-align: center;">Таблица доступных видеокарт</h3>
-                <table class="table table-bordered table-striped table-dark table-hover">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">№</th>
-                            <th scope="col">Модель</th>
-                            <th scope="col">Графический процессор</th>
-                            <th scope="col">Штатная частота работы видеочипа, МГц</th>
-                            <th scope="col">Объем видеопамяти, ГБ</th>
-                            <th scope="col">Тип и количество видеоразъемов</th>
-                        </tr>
-                    </thead>
-                    <tbody *ngFor="let videoCard of videoCards; let i = index">
-                        <tr>
-                            <th scope="row">{{i + 1}}</th>
-                            <td>{{videoCard.att1}}</td>
-                            <td>{{videoCard.att2}}</td>
-                            <td>{{videoCard.att3}}</td>
-                            <td>{{videoCard.att4}}</td>
-                            <td>{{videoCard.att5}}</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="col-12 col-lg-9">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="mb-3" style="text-align: center;">Таблица доступных видеокарт</h3>
+                        <table class="table table-bordered table-hover" id="video-cards-table">
+                            <thead class="align-top">
+                                <tr>
+                                    <th scope="col">№</th>
+                                    <th scope="col">Модель</th>
+                                    <th scope="col">Графический процессор</th>
+                                    <th scope="col">Штатная частота работы видеочипа, МГц</th>
+                                    <th scope="col">Объем видеопамяти, ГБ</th>
+                                    <th scope="col">Тип и количество видеоразъемов</th>
+                                    <th scope="col">Действия</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let videoCard of videoCards; let i = index">
+                                <tr>
+                                    <th scope="row">{{i + 1}}</th>
+                                    <td>{{videoCard.name}}</td>
+                                    <td>{{videoCard.graphic_processor}}</td>
+                                    <td>{{videoCard.frequency}}</td>
+                                    <td>{{videoCard.vram}}</td>
+                                    <td>{{videoCard.outputs}}</td>
+                                    <td class="text-center">
+                                        <span class="text-warning ms-1" style="cursor: pointer" data-id={{i}} data-bs-toggle="modal" data-bs-target="#modal-video-card" (click)="updateVideoCard(i)">
+                                            <i class="bi-pencil-square" style="font-size: 20px"></i>
+                                        </span>
+                                        <span class="text-danger ms-1" style="cursor: pointer" (click)="deleteVideoCard(i)">
+                                            <i class="bi-x-square" style="font-size: 20px"></i>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="accordion mx-auto" id="accordionExample" style="width: 91%;">
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button text-color" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
-                    aria-expanded="true" aria-controls="collapseOne">
-                    Добавление видеокарты
-                </button>
-            </h2>
-            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
-                data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                    Здесь что-то будет
+            <div class="col-12 col-lg-3">
+                <div class="card" id="">
+                    <div class="card-body">
+                        <div>
+                            <h1 class="card-title fs-5 text-center">Добавление видеокарты</h1>
+                            <div class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#modal-video-card" (click)="clearForm()">Добавить</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -70,4 +77,68 @@
             </div>
         </div>
     </footer>
+           
+    
+    <div class="modal fade" id="modal-video-card" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Характеристики видеокарты</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                    <div class="modal-body">
+                        <div class="input-container mb-3">
+                            <div class="form-floating w-50">
+                                <input class="form-control" id="name" name="name" formControlName="name"/>
+                                <label for="name">Модель</label>
+                            </div>
+                            <div class="validation-error w-50" *ngIf="form.controls['name'].invalid || form.controls['name'].untouched">
+                                Введите модель
+                            </div>
+                        </div>
+                        <div class="input-container mb-3">
+                            <div class="form-floating w-50">
+                                <input class="form-control" id="graphic_processor" name="graphic_processor" formControlName="graphic_processor"/>
+                                <label for="graphic_processor">Графический процессор</label>
+                            </div>
+                            <div class="validation-error w-50" *ngIf="form.controls['graphic_processor'].invalid || form.controls['graphic_processor'].untouched">
+                                Введите графический процессор
+                            </div>
+                        </div>
+                        <div class="input-container mb-3">
+                            <div class="form-floating w-50">
+                                <input type="number" class="form-control" id="frequency" name="frequency" formControlName="frequency"/>
+                                <label for="frequency">Частота видеочипа</label>
+                            </div>
+                            <div class="validation-error w-50" *ngIf="form.controls['frequency'].invalid || form.controls['frequency'].untouched">
+                                Введите частоту видеочипа, МГц
+                            </div>
+                        </div>
+                        <div class="input-container mb-3">
+                            <div class="form-floating w-50">
+                                <input type="number" class="form-control" id="vram" name="vram" formControlName="vram"/>
+                                <label for="vram">Объем видеопамяти</label>
+                            </div>
+                            <div class="validation-error w-50" *ngIf="form.controls['vram'].invalid || form.controls['vram'].untouched">
+                                Введите объем видеопамяти, ГБ
+                            </div>
+                        </div>
+                        <div class="input-container mb-3">
+                            <div class="form-floating w-50">
+                                <input class="form-control" id="outputs" name="outputs" formControlName="outputs"/>
+                                <label for="outputs">Видеовыходы</label>
+                            </div>
+                            <div class="validation-error w-50" *ngIf="form.controls['outputs'].invalid || form.controls['outputs'].untouched">
+                                Введите видеовыходы
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" [disabled]="form.invalid" data-bs-dismiss="modal">Добавить</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </main>

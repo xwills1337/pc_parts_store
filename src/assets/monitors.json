@@ -1,51 +1,51 @@
 [
   {
-    "att1": "DEXP DF22N1",
-    "att2": "21.4",
-    "att3": "VA",
-    "att4": "75",
-    "att5": "1920x1080"
+    "name": "DEXP DF22N1",
+    "diagonal": "21.4",
+    "matrix": "VA",
+    "frequency": "75",
+    "resolution": "1920x1080"
   },
   {
-    "att1": "AOC E1659FWU",
-    "att2": "15.6",
-    "att3": "TN",
-    "att4": "60",
-    "att5": "1366x768"
+    "name": "AOC E1659FWU",
+    "diagonal": "15.6",
+    "matrix": "TN",
+    "frequency": "60",
+    "resolution": "1366x768"
   },
   {
-    "att1": "Cooler Master CMI-GA241",
-    "att2": "23.8",
-    "att3": "VA",
-    "att4": "100",
-    "att5": "1920x1080"
+    "name": "Cooler Master CMI-GA241",
+    "diagonal": "23.8",
+    "matrix": "VA",
+    "frequency": "100",
+    "resolution": "1920x1080"
   },
   {
-    "att1": "AOPEN 22SA2QEBI",
-    "att2": "21.5",
-    "att3": "IPS",
-    "att4": "100",
-    "att5": "1920x1080"
+    "name": "AOPEN 22SA2QEBI",
+    "diagonal": "21.5",
+    "matrix": "IPS",
+    "frequency": "100",
+    "resolution": "1920x1080"
   },
   {
-    "att1": "ASUS VA247HE",
-    "att2": "23.8",
-    "att3": "VA",
-    "att4": "75",
-    "att5": "1920x1080"
+    "name": "ASUS VA247HE",
+    "diagonal": "23.8",
+    "matrix": "VA",
+    "frequency": "75",
+    "resolution": "1920x1080"
   },
   {
-    "att1": "HUAWEI MateView SE SSN-24BZ",
-    "att2": "23.8",
-    "att3": "IPS",
-    "att4": "75",
-    "att5": "1920x1080"
+    "name": "HUAWEI MateView SE SSN-24BZ",
+    "diagonal": "23.8",
+    "matrix": "IPS",
+    "frequency": "75",
+    "resolution": "1920x1080"
   },
   {
-    "att1": "DEXP DF24N1R",
-    "att2": "23.8",
-    "att3": "IPS",
-    "att4": "75",
-    "att5": "1920x1080"
+    "name": "DEXP DF24N1R",
+    "diagonal": "23.8",
+    "matrix": "IPS",
+    "frequency": "75",
+    "resolution": "1920x1080"
   }
 ]
