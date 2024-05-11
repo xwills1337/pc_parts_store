@@ -1,16 +1,44 @@
 [
-    {
-        "att1": "test processor 1",
-        "att2": "test processor 2",
-        "att3": "test processor 3",
-        "att4": "test processor 4",
-        "att5": "test processor 5"
-    },
-    {
-        "att1": "test processor 1",
-        "att2": "test processor 2",
-        "att3": "test processor 3",
-        "att4": "test processor 4",
-        "att5": "test processor 5"
-    }
+  {
+    "att1": "AMD FX-4300",
+    "att2": "AM3+",
+    "att3": "4",
+    "att4": "3.8",
+    "att5": "4"
+  },
+  {
+    "att1": "AMD Ryzen 3 4100",
+    "att2": "AM4",
+    "att3": "4",
+    "att4": "3.8",
+    "att5": "4"
+  },
+  {
+    "att1": "Intel Pentium Gold G6405",
+    "att2": "LGA 1200",
+    "att3": "2",
+    "att4": "4.1",
+    "att5": "4.1"
+  },
+  {
+    "att1": "Intel Core i5-10400F",
+    "att2": "LGA 1200",
+    "att3": "6",
+    "att4": "2.9",
+    "att5": "4.3"
+  },
+  {
+    "att1": "Intel Core i5-8400",
+    "att2": "LGA 1151-v2",
+    "att3": "6",
+    "att4": "2.8",
+    "att5": "4"
+  },
+  {
+    "att1": "Intel Core i5-12400F",
+    "att2": "LGA 1700",
+    "att3": "6",
+    "att4": "2.5",
+    "att5": "4.4"
+  }
 ]
