@@ -25,7 +25,7 @@ export class Monitor {
 })
 export class MonitorsComponent implements AfterViewInit, OnInit {
   monitors: Monitor[] = [];
-  updating_id: number = -1;
+  updatingId: number = -1;
 
   constructor (private elementRef: ElementRef, private dataService: DataService<Monitor> ) {}
 
@@ -42,7 +42,7 @@ export class MonitorsComponent implements AfterViewInit, OnInit {
   }
 
   clearForm(): void {
-    this.updating_id = -1;
+    this.updatingId = -1;
     this.form.setValue({
       "name": '',
       "diagonal": '',
@@ -53,7 +53,8 @@ export class MonitorsComponent implements AfterViewInit, OnInit {
   }
 
   updateMonitor(id: number): void {
-    this.updating_id = id;
+    console.log(`Monitor ${this.monitors[id]} has been updated.`);
+    this.updatingId = id;
     this.form.setValue({
       "name": this.monitors[id].name,
       "diagonal": this.monitors[id].diagonal,
@@ -61,33 +62,42 @@ export class MonitorsComponent implements AfterViewInit, OnInit {
       "frequency": this.monitors[id].frequency,
       "resolution": this.monitors[id].resolution
     });
+    this.dataService.saveProduct('monitors', this.monitors);
   }
 
   deleteMonitor(id: number): void {
+    console.log(`Monitor ${this.monitors[id]} has been deleted.`);
     this.monitors.splice(id, 1);
+    this.dataService.saveProduct('monitors', this.monitors);
   }
 
   ngOnInit(): void {
-    this.dataService.getProduct('assets/monitors.json')
+    this.dataService.getProduct('assets/monitors.json', 'monitors')
     .pipe(
       filter(data => data != null),
       map((data => (data.map(monitor => ({...monitor})))))
     )
     .subscribe((monitors) => {
         this.monitors = monitors;
+        let exists = localStorage.getItem('monitors');
+        if (exists == null) {
+          let dataString: string = JSON.stringify(this.monitors);
+          localStorage.setItem('monitors', dataString);
+        }
     });
   }
 
   onSubmit(): void {
     const value = this.form.value;
-    if (this.updating_id == -1)
+    if (this.updatingId == -1)
       this.monitors.push(new Monitor(value.name, value.diagonal, value.matrix, value.frequency, value.resolution));
     else
-      this.monitors[this.updating_id] = new Monitor(value.name, value.diagonal, value.matrix, value.frequency, value.resolution);
+      this.monitors[this.updatingId] = new Monitor(value.name, value.diagonal, value.matrix, value.frequency, value.resolution);
     this.clearForm();
+    this.dataService.saveProduct('monitors', this.monitors);
   }
 
   onNameChange(): void {
-    console.log('New monitor has been added.');
+    console.log(`Monitor ${this.monitors[-1]} has been added.`);
   }
 }

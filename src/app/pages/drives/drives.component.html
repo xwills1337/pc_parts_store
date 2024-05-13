@@ -24,8 +24,8 @@
                                     <td>{{drive.name}}</td>
                                     <td>{{drive.capacity}}</td>
                                     <td>{{drive.cache}}</td>
-                                    <td>{{drive.rotation_speed}}</td>
-                                    <td>{{drive.data_transfer_rate}}</td>
+                                    <td>{{drive.rotationSpeed}}</td>
+                                    <td>{{drive.dataTransferRate}}</td>
                                     <td class="text-center">
                                         <span class="text-warning ms-1" style="cursor: pointer" data-id={{i}} data-bs-toggle="modal" data-bs-target="#modal-drive" (click)="updateDrive(i)">
                                             <i class="bi-pencil-square" style="font-size: 20px"></i>
@@ -91,19 +91,19 @@
                         </div>
                         <div class="input-container mb-3">
                             <div class="form-floating w-50">
-                                <input type="number" class="form-control" id="rotation_speed" name="rotation_speed" formControlName="rotation_speed"/>
-                                <label for="rotation_speed">Скорость вращения шпинделя</label>
+                                <input type="number" class="form-control" id="rotationSpeed" name="rotationSpeed" formControlName="rotationSpeed"/>
+                                <label for="rotationSpeed">Скорость вращения шпинделя</label>
                             </div>
-                            <div class="validation-error w-50" *ngIf="form.controls['rotation_speed'].invalid || form.controls['rotation_speed'].untouched">
+                            <div class="validation-error w-50" *ngIf="form.controls['rotationSpeed'].invalid || form.controls['rotationSpeed'].untouched">
                                 Введите скорость вращения шпинделя, об/мин
                             </div>
                         </div>
                         <div class="input-container mb-3">
                             <div class="form-floating w-50">
-                                <input type="number" class="form-control" id="data_transfer_rate" name="data_transfer_rate" formControlName="data_transfer_rate"/>
-                                <label for="data_transfer_rate">Скорость передачи данных</label>
+                                <input type="number" class="form-control" id="dataTransferRate" name="dataTransferRate" formControlName="dataTransferRate"/>
+                                <label for="dataTransferRate">Скорость передачи данных</label>
                             </div>
-                            <div class="validation-error w-50" *ngIf="form.controls['data_transfer_rate'].invalid || form.controls['data_transfer_rate'].untouched">
+                            <div class="validation-error w-50" *ngIf="form.controls['dataTransferRate'].invalid || form.controls['dataTransferRate'].untouched">
                                 Введите скорость передачи данных, Мбайт/сек
                             </div>
                         </div>

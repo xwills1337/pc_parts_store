@@ -8,13 +8,13 @@ export class Processor {
   public socket: string = "";
   public cores: number = 0;
   public frequency: number = 0;
-  public turbo_frequency: number = 0;
-  constructor (name: string, socket: string, cores: number, frequency: number, turbo_frequency: number) {
+  public turboFrequency: number = 0;
+  constructor (name: string, socket: string, cores: number, frequency: number, turboFrequency: number) {
     this.name = name;
     this.socket = socket;
     this.cores = cores;
     this.frequency = frequency;
-    this.turbo_frequency = turbo_frequency;
+    this.turboFrequency = turboFrequency;
   }
 }
 
@@ -25,7 +25,7 @@ export class Processor {
 })
 export class ProcessorsComponent implements AfterViewInit, OnInit {
   processors: Processor[] = [];
-  updating_id: number = -1;
+  updatingId: number = -1;
 
   constructor (private elementRef: ElementRef, private dataService: DataService<Processor>) {}
 
@@ -34,11 +34,11 @@ export class ProcessorsComponent implements AfterViewInit, OnInit {
     socket: new FormControl('', Validators.required),
     cores: new FormControl(0, Validators.required),
     frequency: new FormControl(0, Validators.required),
-    turbo_frequency: new FormControl(0, Validators.required)
+    turboFrequency: new FormControl(0, Validators.required)
   });
 
   clearForm(): void {
-    this.updating_id = -1;
+    this.updatingId = -1;
     this.form.setValue({
       "name": '',
       "socket": '',
@@ -49,18 +49,22 @@ export class ProcessorsComponent implements AfterViewInit, OnInit {
   }
 
   updateProcessor(id: number): void {
-    this.updating_id = id;
+    console.log(`Processor ${this.processors[id]} has been updated.`);
+    this.updatingId = id;
     this.form.setValue({
       "name": this.processors[id].name,
       "socket": this.processors[id].socket,
       "cores": this.processors[id].cores,
       "frequency": this.processors[id].frequency,
-      "turbo_frequency": this.processors[id].turbo_frequency
+      "turbo_frequency": this.processors[id].turboFrequency
     });
+    this.dataService.saveProduct('processors', this.processors);
   }
 
   deleteProcessor(id: number): void {
+    console.log(`Processor ${this.processors[id]} has been deleted.`);
     this.processors.splice(id, 1);
+    this.dataService.saveProduct('processors', this.processors);
   }
 
   ngAfterViewInit() {
@@ -68,26 +72,32 @@ export class ProcessorsComponent implements AfterViewInit, OnInit {
   }
 
   ngOnInit(): void {
-    this.dataService.getProduct('assets/processors.json')
+    this.dataService.getProduct('assets/processors.json', 'processors')
     .pipe(
       filter(data => data != null),
       map((data => (data.map(processor => ({...processor})))))
     )
     .subscribe((processors) => {
         this.processors = processors;
+        let exists = localStorage.getItem('processors');
+        if (exists == null) {
+          let dataString: string = JSON.stringify(this.processors);
+          localStorage.setItem('processors', dataString);
+        }
     });
   }
 
   onSubmit(): void {
     const value = this.form.value;
-    if (this.updating_id == -1)
+    if (this.updatingId == -1)
       this.processors.push(new Processor(value.name, value.socket, value.cores, value.frequency, value.turbo_frequency));
     else
-      this.processors[this.updating_id] = new Processor(value.name, value.socket, value.cores, value.frequency, value.turbo_frequency);
+      this.processors[this.updatingId] = new Processor(value.name, value.socket, value.cores, value.frequency, value.turbo_frequency);
     this.clearForm();
+    this.dataService.saveProduct('processors', this.processors);
   }
 
   onNameChange(): void {
-    console.log('New processor has been added.');
+    console.log(`Processor ${this.processors[-1]} has been added.`);
   }
 }

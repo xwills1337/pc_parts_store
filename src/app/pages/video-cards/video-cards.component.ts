@@ -5,13 +5,13 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 export class VideoCard {
   public name: string = "";
-  public graphic_processor: string = "";
+  public graphicProcessor: string = "";
   public frequency: number = 0;
   public vram: number = 0;
   public outputs: string = "";
-  constructor (name: string, graphic_processor: string, frequency: number, vram: number, outputs: string) {
+  constructor (name: string, graphicProcessor: string, frequency: number, vram: number, outputs: string) {
     this.name = name;
-    this.graphic_processor = graphic_processor;
+    this.graphicProcessor = graphicProcessor;
     this.frequency = frequency;
     this.vram = vram;
     this.outputs = outputs;
@@ -25,20 +25,20 @@ export class VideoCard {
 })
 export class VideoCardsComponent implements AfterViewInit, OnInit {
   videoCards: VideoCard[] = [];
-  updating_id: number = -1;
+  updatingId: number = -1;
 
   constructor (private elementRef: ElementRef, private dataService: DataService<VideoCard> ) {}
 
   form: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
-    graphic_processor: new FormControl('', Validators.required),
+    graphicProcessor: new FormControl('', Validators.required),
     frequency: new FormControl(0, Validators.required),
     vram: new FormControl(0, Validators.required),
     outputs: new FormControl('', Validators.required)
   });
 
   clearForm(): void {
-    this.updating_id = -1;
+    this.updatingId = -1;
     this.form.setValue({
       "name": '',
       "graphic_processor": '',
@@ -49,18 +49,22 @@ export class VideoCardsComponent implements AfterViewInit, OnInit {
   }
 
   updateVideoCard(id: number): void {
-    this.updating_id = id;
+    console.log(`Video card ${this.videoCards[id]} has been updated.`);
+    this.updatingId = id;
     this.form.setValue({
       "name": this.videoCards[id].name,
-      "graphic_processor": this.videoCards[id].graphic_processor,
+      "graphic_processor": this.videoCards[id].graphicProcessor,
       "frequency": this.videoCards[id].frequency,
       "vram": this.videoCards[id].vram,
       "outputs": this.videoCards[id].outputs
     });
+    this.dataService.saveProduct('videoCards', this.videoCards);
   }
 
   deleteVideoCard(id: number): void {
+    console.log(`Video card ${this.videoCards[id]} has been deleted.`);
     this.videoCards.splice(id, 1);
+    this.dataService.saveProduct('videoCards', this.videoCards);
   }
 
   ngAfterViewInit() {
@@ -68,26 +72,32 @@ export class VideoCardsComponent implements AfterViewInit, OnInit {
   }
 
   ngOnInit(): void {
-    this.dataService.getProduct('assets/video_cards.json')
+    this.dataService.getProduct('assets/video_cards.json', 'videoCards')
     .pipe(
       filter(data => data != null),
       map((data => (data.map(videoCard => ({...videoCard})))))
     )
     .subscribe((videoCards) => {
         this.videoCards = videoCards;
+        let exists = localStorage.getItem('videoCards');
+        if (exists == null) {
+          let dataString: string = JSON.stringify(this.videoCards);
+          localStorage.setItem('videoCards', dataString);
+        }
     });
   }
 
   onSubmit(): void {
     const value = this.form.value;
-    if (this.updating_id == -1)
+    if (this.updatingId == -1)
       this.videoCards.push(new VideoCard(value.name, value.graphic_processor, value.frequency, value.vram, value.outputs));
     else
-      this.videoCards[this.updating_id] = new VideoCard(value.name, value.graphic_processor, value.frequency, value.vram, value.outputs);
+      this.videoCards[this.updatingId] = new VideoCard(value.name, value.graphic_processor, value.frequency, value.vram, value.outputs);
     this.clearForm();
+    this.dataService.saveProduct('videoCards', this.videoCards);
   }
 
   onNameChange(): void {
-    console.log('New video card has been added.');
+    console.log(`Video card ${this.videoCards[-1]} has been added.`);
   }
 }
