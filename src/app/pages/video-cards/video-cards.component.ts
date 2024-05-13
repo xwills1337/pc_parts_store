@@ -58,6 +58,7 @@ export class VideoCardsComponent implements AfterViewInit, OnInit {
       "vram": this.videoCards[id].vram,
       "outputs": this.videoCards[id].outputs
     });
+    this.dataService.saveProduct('videoCards', this.videoCards);
   }
 
   deleteVideoCard(id: number): void {
@@ -78,6 +79,11 @@ export class VideoCardsComponent implements AfterViewInit, OnInit {
     )
     .subscribe((videoCards) => {
         this.videoCards = videoCards;
+        let exists = localStorage.getItem('videoCards');
+        if (exists == null) {
+          let dataString: string = JSON.stringify(this.videoCards);
+          localStorage.setItem('videoCards', dataString);
+        }
     });
   }
 

@@ -22,7 +22,7 @@
                                 <tr>
                                     <th scope="row">{{i + 1}}</th>
                                     <td>{{videoCard.name}}</td>
-                                    <td>{{videoCard.graphic_processor}}</td>
+                                    <td>{{videoCard.graphicProcessor}}</td>
                                     <td>{{videoCard.frequency}}</td>
                                     <td>{{videoCard.vram}}</td>
                                     <td>{{videoCard.outputs}}</td>
@@ -73,10 +73,10 @@
                         </div>
                         <div class="input-container mb-3">
                             <div class="form-floating w-50">
-                                <input class="form-control" id="graphic_processor" name="graphic_processor" formControlName="graphic_processor"/>
-                                <label for="graphic_processor">Графический процессор</label>
+                                <input class="form-control" id="graphicProcessor" name="graphicProcessor" formControlName="graphicProcessor"/>
+                                <label for="graphicProcessor">Графический процессор</label>
                             </div>
-                            <div class="validation-error w-50" *ngIf="form.controls['graphic_processor'].invalid || form.controls['graphic_processor'].untouched">
+                            <div class="validation-error w-50" *ngIf="form.controls['graphicProcessor'].invalid || form.controls['graphicProcessor'].untouched">
                                 Введите графический процессор
                             </div>
                         </div>

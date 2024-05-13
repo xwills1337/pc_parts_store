@@ -58,6 +58,7 @@ export class ProcessorsComponent implements AfterViewInit, OnInit {
       "frequency": this.processors[id].frequency,
       "turbo_frequency": this.processors[id].turboFrequency
     });
+    this.dataService.saveProduct('processors', this.processors);
   }
 
   deleteProcessor(id: number): void {
@@ -78,8 +79,11 @@ export class ProcessorsComponent implements AfterViewInit, OnInit {
     )
     .subscribe((processors) => {
         this.processors = processors;
-        let dataString: string = JSON.stringify(this.processors);
-        localStorage.setItem('processors', dataString);
+        let exists = localStorage.getItem('processors');
+        if (exists == null) {
+          let dataString: string = JSON.stringify(this.processors);
+          localStorage.setItem('processors', dataString);
+        }
     });
   }
 

@@ -58,6 +58,7 @@ export class DevicesComponent implements AfterViewInit, OnInit {
       "weight": this.devices[id].weight,
       "size": this.devices[id].size
     });
+    this.dataService.saveProduct('devices', this.devices);
   }
 
   deleteDevice(id: number): void {
@@ -78,8 +79,11 @@ export class DevicesComponent implements AfterViewInit, OnInit {
     )
     .subscribe((devices) => {
         this.devices = devices;
-        let dataString: string = JSON.stringify(this.devices);
-        localStorage.setItem('devices', dataString);
+        let exists = localStorage.getItem('devices');
+        if (exists == null) {
+          let dataString: string = JSON.stringify(this.devices);
+          localStorage.setItem('devices', dataString);
+        }
     });
   }
 

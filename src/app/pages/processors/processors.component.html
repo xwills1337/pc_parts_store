@@ -25,7 +25,7 @@
                                     <td>{{processor.socket}}</td>
                                     <td>{{processor.cores}}</td>
                                     <td>{{processor.frequency}}</td>
-                                    <td>{{processor.turbo_frequency}}</td>
+                                    <td>{{processor.turboFrequency}}</td>
                                     <td class="text-center">
                                         <span class="text-warning ms-1" style="cursor: pointer" data-id={{i}} data-bs-toggle="modal" data-bs-target="#modal-processor" (click)="updateProcessor(i)">
                                             <i class="bi-pencil-square" style="font-size: 20px"></i>
@@ -100,10 +100,10 @@
                         </div>
                         <div class="input-container mb-3">
                             <div class="form-floating w-50">
-                                <input type="number" class="form-control" id="turbo_frequency" name="turbo_frequency" formControlName="turbo_frequency"/>
-                                <label for="turbo_frequency">Частота в турбо режиме</label>
+                                <input type="number" class="form-control" id="turboFrequency" name="turboFrequency" formControlName="turboFrequency"/>
+                                <label for="turboFrequency">Частота в турбо режиме</label>
                             </div>
-                            <div class="validation-error w-50" *ngIf="form.controls['turbo_frequency'].invalid || form.controls['turbo_frequency'].untouched">
+                            <div class="validation-error w-50" *ngIf="form.controls['turboFrequency'].invalid || form.controls['turboFrequency'].untouched">
                                 Введите частоту в турбо режиме, ГГц
                             </div>
                         </div>

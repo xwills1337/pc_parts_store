@@ -62,6 +62,7 @@ export class MonitorsComponent implements AfterViewInit, OnInit {
       "frequency": this.monitors[id].frequency,
       "resolution": this.monitors[id].resolution
     });
+    this.dataService.saveProduct('monitors', this.monitors);
   }
 
   deleteMonitor(id: number): void {
@@ -78,8 +79,11 @@ export class MonitorsComponent implements AfterViewInit, OnInit {
     )
     .subscribe((monitors) => {
         this.monitors = monitors;
-        let dataString: string = JSON.stringify(this.monitors);
-        localStorage.setItem('monitors', dataString);
+        let exists = localStorage.getItem('monitors');
+        if (exists == null) {
+          let dataString: string = JSON.stringify(this.monitors);
+          localStorage.setItem('monitors', dataString);
+        }
     });
   }
 

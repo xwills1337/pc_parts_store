@@ -58,6 +58,7 @@ export class DrivesComponent implements AfterViewInit, OnInit {
       "rotation_speed": this.drives[id].rotationSpeed,
       "data_transfer_rate": this.drives[id].dataTransferRate
     });
+    this.dataService.saveProduct('drives', this.drives);
   }
 
   deleteDrive(id: number): void {
@@ -78,8 +79,11 @@ export class DrivesComponent implements AfterViewInit, OnInit {
     )
     .subscribe((drives) => {
         this.drives = drives;
-        let dataString: string = JSON.stringify(this.drives);
-        localStorage.setItem('drives', dataString);
+        let exists = localStorage.getItem('drives');
+        if (exists == null) {
+          let dataString: string = JSON.stringify(this.drives);
+          localStorage.setItem('drives', dataString);
+        }
     });
   }
 

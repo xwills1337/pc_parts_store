@@ -22,8 +22,8 @@
                                 <tr>
                                     <th scope="row">{{i + 1}}</th>
                                     <td>{{device.name}}</td>
-                                    <td>{{device.device_type}}</td>
-                                    <td>{{device.connection_type}}</td>
+                                    <td>{{device.deviceType}}</td>
+                                    <td>{{device.connectionType}}</td>
                                     <td>{{device.weight}}</td>
                                     <td>{{device.size}}</td>
                                     <td class="text-center">
@@ -73,19 +73,19 @@
                         </div>
                         <div class="input-container mb-3">
                             <div class="form-floating w-50">
-                                <input class="form-control" id="device_type" name="device_type" formControlName="device_type"/>
-                                <label for="device_type">Тип устройства</label>
+                                <input class="form-control" id="deviceType" name="deviceType" formControlName="deviceType"/>
+                                <label for="deviceType">Тип устройства</label>
                             </div>
-                            <div class="validation-error w-50" *ngIf="form.controls['device_type'].invalid || form.controls['device_type'].untouched">
+                            <div class="validation-error w-50" *ngIf="form.controls['deviceType'].invalid || form.controls['deviceType'].untouched">
                                 Введите тип устройства
                             </div>
                         </div>
                         <div class="input-container mb-3">
                             <div class="form-floating w-50">
-                                <input class="form-control" id="connection_type" name="connection_type" formControlName="connection_type"/>
-                                <label for="connection_type">Тип соединения</label>
+                                <input class="form-control" id="connectionType" name="connectionType" formControlName="connectionType"/>
+                                <label for="connectionType">Тип соединения</label>
                             </div>
-                            <div class="validation-error w-50" *ngIf="form.controls['connection_type'].invalid || form.controls['connection_type'].untouched">
+                            <div class="validation-error w-50" *ngIf="form.controls['connectionType'].invalid || form.controls['connectionType'].untouched">
                                 Введите тип соединения
                             </div>
                         </div>
