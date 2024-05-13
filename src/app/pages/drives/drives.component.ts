@@ -7,14 +7,14 @@ export class Drive {
   public name: string = "";
   public capacity: number = 0;
   public cache: number = 0;
-  public rotation_speed: number = 0;
-  public data_transfer_rate: number = 0;
-  constructor (name: string, capacity: number, cache: number, rotation_speed: number, data_transfer_rate: number) {
+  public rotationSpeed: number = 0;
+  public dataTransferRate: number = 0;
+  constructor (name: string, capacity: number, cache: number, rotation_speed: number, dataTransferRate: number) {
     this.name = name;
     this.capacity = capacity;
     this.cache = cache;
-    this.rotation_speed = rotation_speed;
-    this.data_transfer_rate = data_transfer_rate;
+    this.rotationSpeed = rotation_speed;
+    this.dataTransferRate = dataTransferRate;
   }
 }
 
@@ -25,7 +25,7 @@ export class Drive {
 })
 export class DrivesComponent implements AfterViewInit, OnInit {
   drives: Drive[] = [];
-  updating_id: number = -1;
+  updatingId: number = -1;
 
   constructor (private elementRef: ElementRef, private dataService: DataService<Drive> ) {}
 
@@ -33,12 +33,12 @@ export class DrivesComponent implements AfterViewInit, OnInit {
     name: new FormControl('', Validators.required),
     capacity: new FormControl(0, Validators.required),
     cache: new FormControl(0, Validators.required),
-    rotation_speed: new FormControl(0, Validators.required),
-    data_transfer_rate: new FormControl(0, Validators.required)
+    rotationSpeed: new FormControl(0, Validators.required),
+    dataTransferRate: new FormControl(0, Validators.required)
   });
 
   clearForm(): void {
-    this.updating_id = -1;
+    this.updatingId = -1;
     this.form.setValue({
       "name": '',
       "capacity": '',
@@ -49,18 +49,21 @@ export class DrivesComponent implements AfterViewInit, OnInit {
   }
 
   updateDrive(id: number): void {
-    this.updating_id = id;
+    console.log(`Drive ${this.drives[id]} has been updated.`);
+    this.updatingId = id;
     this.form.setValue({
       "name": this.drives[id].name,
       "capacity": this.drives[id].capacity,
       "cache": this.drives[id].cache,
-      "rotation_speed": this.drives[id].rotation_speed,
-      "data_transfer_rate": this.drives[id].data_transfer_rate
+      "rotation_speed": this.drives[id].rotationSpeed,
+      "data_transfer_rate": this.drives[id].dataTransferRate
     });
   }
 
   deleteDrive(id: number): void {
+    console.log(`Drive ${this.drives[id]} has been deleted.`);
     this.drives.splice(id, 1);
+    this.dataService.saveProduct('drives', this.drives);
   }
 
   ngAfterViewInit() {
@@ -68,26 +71,29 @@ export class DrivesComponent implements AfterViewInit, OnInit {
   }
 
   ngOnInit(): void {
-    this.dataService.getProduct('assets/drives.json')
+    this.dataService.getProduct('assets/drives.json', 'drives')
     .pipe(
       filter(data => data != null),
       map((data => (data.map(drive => ({...drive})))))
     )
     .subscribe((drives) => {
         this.drives = drives;
+        let dataString: string = JSON.stringify(this.drives);
+        localStorage.setItem('drives', dataString);
     });
   }
 
   onSubmit(): void {
     const value = this.form.value;
-    if (this.updating_id == -1)
+    if (this.updatingId == -1)
       this.drives.push(new Drive(value.name, value.capacity, value.cache, value.rotation_speed, value.data_transfer_rate));
     else
-      this.drives[this.updating_id] = new Drive(value.name, value.capacity, value.cache, value.rotation_speed, value.data_transfer_rate);
+      this.drives[this.updatingId] = new Drive(value.name, value.capacity, value.cache, value.rotation_speed, value.data_transfer_rate);
     this.clearForm();
+    this.dataService.saveProduct('drives', this.drives);
   }
 
   onNameChange(): void {
-    console.log('New drive has been added.');
+    console.log(`Drive ${this.drives[-1]} has been added.`);
   }
 }
